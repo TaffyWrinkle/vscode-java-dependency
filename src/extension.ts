@@ -9,6 +9,7 @@ import { contextManager } from "./contextManager";
 import { LibraryController } from "./controllers/libraryController";
 import { ProjectController } from "./controllers/projectController";
 import { init as initExpService } from "./ExperimentationService";
+import { syncHandler } from "./fileWather";
 import { Settings } from "./settings";
 import { DependencyExplorer } from "./views/dependencyExplorer";
 
@@ -58,6 +59,7 @@ async function activateExtension(_operationId: string, context: ExtensionContext
     context.subscriptions.push(new LibraryController(context));
     context.subscriptions.push(new DependencyExplorer(context));
     context.subscriptions.push(contextManager);
+    context.subscriptions.push(syncHandler);
     contextManager.setContextValue(Context.EXTENSION_ACTIVATED, true);
 
     initExpService(context);
